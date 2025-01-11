@@ -1,0 +1,61 @@
+{% extends "base_generic.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+  {% comment %} {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+  
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p>Please login to see this page.</p>
+    {% endif %}
+  {% endif %} {% endcomment %}
+  
+  <form method="post" action="{% url 'accounts:login' %}">
+    {% csrf_token %}
+    {% comment %} {% bootstrap_form form %} {% endcomment %}
+    <div class="row">
+      <div class="col mt-4 pl-5 pr-5">
+          <p class="email">email_address</p>
+          <div class="row mt-4">
+              <div class="col-2 text-center pt-1 pr-0">
+                  <i class="fa fa-user-o" aria-hidden="true" id="user"></i>
+              </div>
+              <div class="col-10 pl-0">
+                  <input type="text" placeholder="Type your email" class='input-1'>
+              </div>
+          </div>
+          <hr class="hr-1">
+          <div class="hide"></div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col mt-4 pl-5 pr-5">
+        <p class="password">Password</p>
+        <div class="row mt-4">
+            <div class="col-2 text-center pt-1 pr-0">
+                <i class="fa fa-lock" aria-hidden="true" id="lock"></i>
+            </div>
+            <div class="col-10 pl-0">
+                <input type="password" placeholder="Type your password" class="input-2">
+            </div>
+        </div>
+        <hr class="hr-2">
+        <div class="hide-1"></div>
+    </div>
+</div>
+    <input type="submit" value="login" class="boxed-btn3 w-100"/>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+  
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <p><a href="">Lost password?</a></p>
+
+  <div class="phone_num d-none d-xl-block">
+    <a href="{% url 'accounts:signup'  %}">Signup</a>
+  </div>
+{% endblock %}

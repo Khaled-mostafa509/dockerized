@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block body %}
+    
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>+{{categories.count}} Category Available</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <!-- job_listing_area_start  -->
+    <div class="job_listing_area plus_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="job_filter white-bg">
+                        <div class="form_inner white-bg">
+
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="recent_joblist_wrap">
+
+                    </div>
+
+                    <div class="job_lists m-0">
+                        <div class="row">
+                            {% for ca in categories%}
+                            {% comment %} {% for category_products in ca.category_products.all %}  {% endcomment %}
+                            <div class="col-lg-12 col-md-12">
+                                <div class="single_jobs white-bg d-flex justify-content-between">
+                                    <div class="jobs_left d-flex align-items-center">
+                                        
+                                        <div class="jobs_conetent">
+                                            <a href="{% url 'home:category_detail' ca.category_id %}"><h4>{{ca.Name}}</h4></a>
+                                            <div class="links_locat d-flex align-items-center">
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            {% endfor%}
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pagination_wrap">
+                                    <ul>
+                                        {% if products.has_previous %}
+                                            <li><a href="?page={{ products.previous_page_number }}"> <i class="ti-angle-left"></i> </a></li>
+                                        {% endif %}
+
+                                        {% for i in products.paginator.page_range %}
+                                            <li><a href="?page={{i}}"><span>{{i}}</span></a></li>
+                                        {% endfor %}
+                                        {% if products.has_next %}
+                                            <li><a href="?page={{ products.next_page_number }}"> <i class="ti-angle-right"></i> </a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_listing_area_end  -->
+{% endblock body %}

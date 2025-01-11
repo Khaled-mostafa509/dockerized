@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+  
+  <form method="post">
+    {% csrf_token %}
+    {% comment %} {% bootstrap_form form %} {% endcomment %}
+    <div class="row">
+      <div class="col mt-4 pl-5 pr-5">
+          <p class="email">email</p>
+          <div class="row mt-4">
+              <div class="col-2 text-center pt-1 pr-0">
+                  <i class="fa fa-user-o" aria-hidden="true" id="user"></i>
+              </div>
+              <div class="col-10 pl-0">
+                  <input type="text" placeholder="Type your email" class='input-1'>
+              </div>
+          </div>
+          <hr class="hr-1">
+          <div class="hide"></div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col mt-4 pl-5 pr-5">
+        <p class="password">password</p>
+        <div class="row mt-4">
+            <div class="col-2 text-center pt-1 pr-0">
+                <i class="fa fa-user-o" aria-hidden="true" id="user"></i>
+            </div>
+            <div class="col-10 pl-0">
+                <input type="password" placeholder="Type your password" class='input-1'>
+            </div>
+        </div>
+        <hr class="hr-1">
+        <div class="hide"></div>
+    </div>
+</div>
+
+    <input type="submit" value="Signup" class="boxed-btn3 w-100"/>
+
+  </form>
+  
+  {# Assumes you setup the password_reset view in your URLconf #}
+  
+{% endblock %}
