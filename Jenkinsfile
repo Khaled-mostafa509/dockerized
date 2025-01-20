@@ -10,7 +10,7 @@ pipeline {
                 sh 'docker build . -t jenkins_nodejs_example:$BUILD_TAG'
             }
             post{
-                succsess {
+                success {
                     sh "docker image ls"
                 }
             }
