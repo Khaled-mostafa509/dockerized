@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/Khaled-mostafa509/dockerized.git'
                 sh 'docker build . -t app:$BUILD_TAG'
                 echo 'Building..'
                 echo 'Application is updated successfully..'
