@@ -7,7 +7,7 @@ pipeline {
                 echo 'Building..'
                 echo 'Application is updated successfully..'
                 git branch: 'main', credentialsId: 'jenkins-doc-git', url: 'https://github.com/Khaled-mostafa509/dockerized.git'
-                sh 'docker ps'
+                sh 'docker build . -t app:$BUILD_TAG'
             }
             post{
                 success {
